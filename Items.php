@@ -205,6 +205,7 @@
             }
         }
 
+
         static function getItemByBidder($bidderid)
         {
             $db = new mysqli("localhost", "root", "", "stock_market");

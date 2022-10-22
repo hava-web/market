@@ -27,7 +27,7 @@
                 {
                     $id = $item->getItemid();
                 ?>
-                <tr><td><?php echo printf("%s",$item->getItemid()); ?></td><td><?php echo $item->getName(); ?></td><td><?php echo $item->getDescription();?></td><td><?php echo $item->getWinprice(); ?></td></tr>
+                <tr><td><?php echo $item->getItemid(); ?></td><td><?php echo $item->getName(); ?></td><td><?php echo $item->getDescription();?></td><td><?php echo $item->getWinprice(); ?></td></tr>
                
                 <?php
                  $itemtotal = $itemtotal + $item->getWinprice();

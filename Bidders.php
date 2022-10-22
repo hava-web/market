@@ -134,7 +134,7 @@
             $query = "UPDATE bidders SET bidderid = ?, lastname = ?, firstname = ?, address = ?, phone = ? WHERE bidderid = $this->bidderid";
             $stmt = $db->prepare($query);
             $stmt->bind_param("issss",$this->bidderid, $this->lastname, $this->firstname, $this->address, $this->phone);
-            $result = $stmt->excute();
+            $result = $stmt->execute();
             $db->close();
             return $result;
       }

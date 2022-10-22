@@ -131,7 +131,7 @@
                 return $this;
         }
 
-        function constructor($itemid, $name, $description, $resaleprice, $winbidder, $winprice)
+        function __construct($itemid, $name, $description, $resaleprice, $winbidder, $winprice)
         {
             $this->itemid = $itemid;
             $this->name = $name;
@@ -190,7 +190,7 @@
             if(mysqli_num_rows($result)>0)
             {
                 $items = array();
-                while($row = $result->fetch_array(MYSQL_ASSOC))
+                while($row = $result->fetch_array(MYSQLI_ASSOC))
                 {
                     $item = new Items($row['itemid'], $row['name'], $row['description'], $row['resaleprice'], $row['winbidder'], $row['winprice']);
                     array_push($items,$item);
@@ -221,6 +221,26 @@
                 }
                 $db->close();
                 return $items;
+            }
+            else
+            {
+                $db->close();
+                return null;
+            }
+        }
+
+
+        static function findItem($itemid)
+        {
+            $db = new mysqli("localhost", "root", "", "stock_market");
+            $query = "SELECT * FROM items WHERE itemid = $itemid";
+            $result = $db->query($query);
+            $row = $result->fetch_array(MSQLI_ASSOC);
+            if($row)
+            {
+                $item = new Items($row['itemid'], $row['name'], $row['description'], $row['resaleprice'], $row['winbidder'], $row['winprice']);
+                $db->close();
+                return $item;
             }
             else
             {

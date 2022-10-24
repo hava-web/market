@@ -165,7 +165,7 @@
         function updateItem()
         {
             $db = new mysqli("localhost", "root", "", "stock_market");
-            $query = "UPDATE items SET name = ?, description = ?, resaleprice = ?, winbidder = ?, winprice = ?";
+            $query = "UPDATE items SET name = ?, description = ?, resaleprice = ?, winbidder = ?, winprice = ? WHERE itemid = $this->itemid";
             $stmt = $db->prepare($query);
             $stmt->bind_param("ssdid",$this->name, $this->description, $this->resaleprice, $this->winbidder, $this->winprice);
             $result = $stmt->execute();
@@ -235,7 +235,7 @@
             $db = new mysqli("localhost", "root", "", "stock_market");
             $query = "SELECT * FROM items WHERE itemid = $itemid";
             $result = $db->query($query);
-            $row = $result->fetch_array(MSQLI_ASSOC);
+            $row = $result->fetch_array(MYSQLI_ASSOC);
             if($row)
             {
                 $item = new Items($row['itemid'], $row['name'], $row['description'], $row['resaleprice'], $row['winbidder'], $row['winprice']);

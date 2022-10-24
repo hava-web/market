@@ -91,10 +91,6 @@ nav
     width: 15%;
     height: 100%;
 }
-form
-{
-
-}
 .login
 {
     display: block;
@@ -145,4 +141,9 @@ footer {
     background-color: #f3f6f8;
     width: 100%;
    }
+
+.input
+{
+    margin-top: 10px;
+}
 

@@ -36,6 +36,6 @@
     ?>
     </select>
     <br>
-    <input type="submit" onClick="button_click(1)" name="deleteitem" value="Delete Item">
-    <input type="submit" onClick="button_click(2)" name="updateitem" value="Update Item">
+    <input type="submit" onClick="button_click(0)" name="deleteitem" value="Delete Item">
+    <input type="submit" onClick="button_click(1)" name="updateitem" value="Update Item">
 </form>

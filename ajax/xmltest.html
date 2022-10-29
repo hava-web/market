@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML test</title>
+    <script language="javascript" type="text/javascript">
+        function getcars() {
+            var carlist = document.getElementById("carlist");
+            carlist.innerHTML = "";
+            var URL = "xmltest.php";
+            var request = new XMLHttpRequest();
+            request.open("GET",URL,true);
+            request.onreadystatechange = function () {
+                if(request.readyState == 4 && request.status == 200)
+                {
+                    var response = request.responseXML;
+                    var cars = response.getElementsByTagName("car");
+                    for (let i = 0; i < cars.length; i++) {
+                        var make = cars[i].getAttribute("make");
+                        var models = cars[i].getElementsByTagName("model");
+                        for (let j = 0; j < models.length; j++) {
+                            var model = models[j].childNodes[0].nodeValue
+                            carlist.innerHTML += make + " " + model + "<br>"; 
+                        }
+                    }
+                }
+            }
+            request.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>Javascript XML test</h2>
+    <p>Cars retrieved form the server:</p>
+    <div class="" id="carlist"></div>
+    <p>This is end of list</p>
+    <input type="button" onclick="getcars()" value="Get cars">
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car dropdown test</title>
+    <script language="javascript" type="text/javascript">
+        function getmodels() {
+            var select = document.getElementById("make");
+            var make = select.options[select.selectedIndex].value;
+            var URL = "ajaxcar.php?make=" + make;
+            var request = new XMLHttpRequest();
+            request.open("GET",URL);
+            request.onreadystatechange = function () {
+                if(request.readyState == 4 && request.status == 200)
+                {
+                    var models = request.responseText.split(',');
+                    var model = document.getElementById('model');
+                    if(model)
+                    {
+                        model.innerHTML =  "";
+                        for (let i = 0; i < models.length; i++) {
+                            model.innerHTML += "<option value='" + models[i] + "'>" + models[i] + "</option>"; 
+                        }
+                    }
+                }
+            }
+            request.send();
+        }
+    </script>
+</head>
+    <h2>Find your car</h2>
+    Make:
+    <select name="" id="make" onchange="getmodels()">
+        <option value="">Select the make</option>
+        <option value="buick">Buick</option>
+        <option value="chevy">Chevy</option>
+        <option value="dodge">Dodge</option>
+        <option value="ford">Ford</option>
+    </select>
+    <br>
+    <br>
+    Model:
+    <select name="" id="model">
+        <option value="">Select make first</option>
+    </select>
+<body>
+    
+</body>
+</html>

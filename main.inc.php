@@ -35,5 +35,4 @@
 <script language="javascript">
     document.login.name.focus();
     document.login.name.select();
-
 </script>

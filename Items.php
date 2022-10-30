@@ -248,6 +248,57 @@
                 return null;
             }
         }
+
+
+        static function getTotalItem()
+        {
+            $db = new mysqli("localhost","root","","stock_market");
+            $query = "SELECT count(itemid) FROM items";
+            $result = $db->query($query);
+            $row = $result->fetch_array();
+            if($row)
+            {
+                return $row[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        static function getTotalPrice()
+        {
+            $db = new mysqli("localhost","root","","stock_market");
+            $query = "SELECT sum(resaleprice) FROM items";
+            $result = $db->query($query);
+            $row = $result->fetch_array();
+            if($row)
+            {
+                return $row[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        static function getTotalBid()
+        {
+            $db = new mysqli("localhost","root","","stock_market");
+            $query = "SELECT sum(winprice) FROM items";
+            $result = $db->query($query);
+            $row = $result->fetch_array();
+            if($row)
+            {
+                return $row[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 
 ?>

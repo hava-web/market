@@ -190,5 +190,21 @@
                   return null;
             }
       }
+
+      static  function getTotalBidder()
+      {
+            $db = new mysqli("localhost","root","","stock_market");
+            $query = "SELECT count(bidderid) FROM bidders";
+            $result = $db->query($query);
+            $row = $result->fetch_array();
+            if($row)
+            {
+                  return $row[0];
+            }
+            else
+            {
+                  return null;
+            }
+      }
 }
 ?>
